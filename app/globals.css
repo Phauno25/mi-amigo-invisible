@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Christmas Theme Colors */
+  --christmas-red: oklch(0.55 0.22 25);
+  --christmas-green: oklch(0.45 0.15 145);
+  --christmas-gold: oklch(0.75 0.15 85);
+  --christmas-cream: oklch(0.96 0.02 90);
+  --christmas-dark: oklch(0.25 0.05 30);
+
+  --background: oklch(0.96 0.02 90);
+  --foreground: oklch(0.25 0.05 30);
+  --card: oklch(0.96 0.02 90);
+  --card-foreground: oklch(0.25 0.05 30);
+  --popover: oklch(0.96 0.02 90);
+  --popover-foreground: oklch(0.25 0.05 30);
+  --primary: oklch(0.55 0.22 25);
+  --primary-foreground: oklch(0.98 0.01 90);
+  --secondary: oklch(0.45 0.15 145);
+  --secondary-foreground: oklch(0.98 0.01 90);
+  --muted: oklch(0.9 0.02 90);
+  --muted-foreground: oklch(0.45 0.03 30);
+  --accent: oklch(0.75 0.15 85);
+  --accent-foreground: oklch(0.25 0.05 30);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 90);
+  --border: oklch(0.85 0.03 90);
+  --input: oklch(0.92 0.02 90);
+  --ring: oklch(0.55 0.22 25);
+  --radius: 0.75rem;
+
+  --sidebar: oklch(0.25 0.05 30);
+  --sidebar-foreground: oklch(0.96 0.02 90);
+  --sidebar-primary: oklch(0.55 0.22 25);
+  --sidebar-primary-foreground: oklch(0.98 0.01 90);
+  --sidebar-accent: oklch(0.35 0.05 30);
+  --sidebar-accent-foreground: oklch(0.96 0.02 90);
+  --sidebar-border: oklch(0.35 0.05 30);
+  --sidebar-ring: oklch(0.55 0.22 25);
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", monospace;
+
+  /* Christmas colors for Tailwind */
+  --color-christmas-red: var(--christmas-red);
+  --color-christmas-green: var(--christmas-green);
+  --color-christmas-gold: var(--christmas-gold);
+  --color-christmas-cream: var(--christmas-cream);
+  --color-christmas-dark: var(--christmas-dark);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Christmas gradient background */
+.bg-christmas-gradient {
+  background: linear-gradient(135deg, oklch(0.25 0.08 145) 0%, oklch(0.2 0.06 30) 50%, oklch(0.25 0.08 145) 100%);
+}
+
+/* Snowfall animation */
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+.animate-fall {
+  animation: fall linear infinite;
+}
