@@ -1,14 +1,15 @@
-import Database from "better-sqlite3"
-import path from "path"
+import Database from "better-sqlite3";
+import path from "path";
 
-const dbPath = path.join(process.cwd(), "amigo-invisible.db")
+const dbName = process.env.DB_NAME || "amigo-invisible.db";
+const dbPath = process.env.DB_PATH || path.join(process.cwd(), dbName);
 
-let db: Database.Database | null = null
+let db: Database.Database | null = null;
 
 export function getDb(): Database.Database {
   if (!db) {
-    db = new Database(dbPath)
-    db.pragma("journal_mode = WAL")
+    db = new Database(dbPath);
+    db.pragma("journal_mode = WAL");
 
     // Initialize tables if they don't exist
     db.exec(`
@@ -69,55 +70,52 @@ export function getDb(): Database.Database {
       );
 
       INSERT OR IGNORE INTO game_state (id, is_active) VALUES (1, FALSE);
-    `)
+    `);
   }
-  return db
+  return db;
 }
 
 // New interfaces for multi-user support
 export interface User {
-  id: number
-  username: string
-  password_hash: string
-  email: string | null
-  is_super_admin: boolean
-  created_at: string
-  updated_at: string
+  id: number;
+  username: string;
+  password_hash: string;
+  email: string | null;
+  is_super_admin: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Game {
-  id: number
-  user_id: number
-  name: string
-  description: string | null
-  is_active: boolean
-  created_at: string
-  updated_at: string
+  id: number;
+  user_id: number;
+  name: string;
+  description: string | null;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }
-
 export interface GameParticipant {
-  id: number
-  game_id: number
-  name: string
-  slug: string
-  access_code: string
-  assigned_to_id: number | null
-  created_at: string
+  id: number;
+  game_id: number;
+  name: string;
+  slug: string;
+  access_code: string;
+  assigned_to_id: number | null;
+  created_at: string;
 }
-
-// Legacy interfaces (kept for backward compatibility)
 export interface Participant {
-  id: number
-  name: string
-  slug: string
-  access_code: string
-  assigned_to_id: number | null
-  created_at: string
+  id: number;
+  name: string;
+  slug: string;
+  access_code: string;
+  assigned_to_id: number | null;
+  created_at: string;
 }
 
 export interface GameState {
-  id: number
-  is_active: boolean
-  created_at: string
-  updated_at: string
+  id: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }

@@ -10,7 +10,8 @@ dotenv.config()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const dbPath = path.join(__dirname, "..", "amigo-invisible.db")
+const dbName = process.env.DB_NAME || "amigo-invisible.db"
+const dbPath = process.env.DB_PATH || path.join(__dirname, "..", dbName)
 
 async function initializeDatabase() {
   console.log("🔧 Inicializando base de datos...")
